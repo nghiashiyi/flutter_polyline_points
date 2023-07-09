@@ -1,6 +1,7 @@
 name: example
 description: A new Flutter application to describe the use of polyline_point library
 version: 1.0.0+1
+publish_to: none
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -11,13 +12,14 @@ dependencies:
 
   flutter_dotenv: any
   cupertino_icons: ^1.0.5
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
   google_maps_flutter: ^2.3.1
   flutter_polyline_points_plus:
     path: ../
+
+dev_dependencies:
+  flutter_lints: any
+  flutter_test:
+    sdk: flutter
 
 flutter:
   uses-material-design: true

@@ -5,10 +5,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   await dotenv.load(fileName: "env/.env");
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,22 +19,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MapScreen(),
+      home: const MapScreen(),
     );
   }
 }
 
 class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
+
   @override
-  _MapScreenState createState() => _MapScreenState();
+  State<MapScreen> createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
   // double _originLatitude = 6.5212402, _originLongitude = 3.3679965;
   // double _destLatitude = 6.849660, _destLongitude = 3.648190;
-  double _originLatitude = 26.48424, _originLongitude = 50.04551;
-  double _destLatitude = 26.46423, _destLongitude = 50.06358;
+  final double _originLatitude = 26.48424, _originLongitude = 50.04551;
+  final double _destLatitude = 26.46423, _destLongitude = 50.06358;
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
@@ -83,7 +87,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   _addPolyLine() {
-    PolylineId id = PolylineId("poly");
+    PolylineId id = const PolylineId("poly");
     Polyline polyline = Polyline(
         polylineId: id, color: Colors.red, points: polylineCoordinates);
     polylines[id] = polyline;
@@ -100,9 +104,9 @@ class _MapScreenState extends State<MapScreen> {
         travelMode: TravelMode.driving,
         wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]);
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
+      }
     }
     _addPolyLine();
   }

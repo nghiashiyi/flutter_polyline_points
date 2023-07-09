@@ -6,9 +6,7 @@ class PointLatLng {
   /// Creates a geographical location specified in degrees [latitude] and
   /// [longitude].
   ///
-  const PointLatLng(double latitude, double longitude)
-      : this.latitude = latitude,
-        this.longitude = longitude;
+  const PointLatLng(this.latitude, this.longitude);
 
   /// The latitude in degrees.
   final double latitude;
