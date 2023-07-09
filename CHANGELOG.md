@@ -1,3 +1,4 @@
+## [3.0.0] - Dart 3 and up-to-date package
 ## [1.0.0] - 16-04-2021
 Released a null safety version
 ## [0.2.6] - 07-03-2021
