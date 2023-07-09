@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../src/PointLatLng.dart';
+import '../src/point_lat_lng.dart';
 import '../src/utils/polyline_waypoint.dart';
 import '../src/utils/request_enums.dart';
 import 'utils/polyline_result.dart';
 
 class NetworkUtil {
-  static const String STATUS_OK = "ok";
+  static const String statusOk = "ok";
 
   ///Get the encoded string from google directions api
   ///
@@ -35,7 +35,9 @@ class NetworkUtil {
     };
     if (wayPoints.isNotEmpty) {
       List wayPointsArray = [];
-      wayPoints.forEach((point) => wayPointsArray.add(point.location));
+      for (var point in wayPoints) {
+        wayPointsArray.add(point.location);
+      }
       String wayPointsString = wayPointsArray.join('|');
       if (optimizeWaypoints) {
         wayPointsString = 'optimize:true|$wayPointsString';
@@ -50,7 +52,7 @@ class NetworkUtil {
     if (response.statusCode == 200) {
       var parsedJson = json.decode(response.body);
       result.status = parsedJson["status"];
-      if (parsedJson["status"]?.toLowerCase() == STATUS_OK &&
+      if (parsedJson["status"]?.toLowerCase() == statusOk &&
           parsedJson["routes"] != null &&
           parsedJson["routes"].isNotEmpty) {
         result.points = decodeEncodedPolyline(
@@ -91,7 +93,7 @@ class NetworkUtil {
       int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
       lng += dlng;
       PointLatLng p =
-          new PointLatLng((lat / 1E5).toDouble(), (lng / 1E5).toDouble());
+          PointLatLng((lat / 1E5).toDouble(), (lng / 1E5).toDouble());
       poly.add(p);
     }
     return poly;

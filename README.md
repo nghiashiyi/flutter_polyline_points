@@ -1,3 +1,6 @@
+This repository is a fork of the original [flutter_polyline_points](https://pub.dev/packages/flutter_polyline_points) plugin, which provides functionality to decode encoded Google Polyline strings into a list of geo-coordinates. The purpose of this fork is to ensure that the plugin remains up-to-date, as the original author has not maintained it anymore.
+Thanks @shkvoretz for Flutter SDK upgrading.
+
 # flutter_polyline_points
 A flutter plugin that decodes encoded google polyline string into list of geo-coordinates suitable for showing route/polyline on maps
 
@@ -17,7 +20,7 @@ To use this package, add flutter_polyline_points as a [dependency in your pubspe
 
 ## Import the package
 ```dart
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points_plus.dart';
 ```
 
 ## First method
